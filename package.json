@@ -1,0 +1,15 @@
+{
+  "name": "footballeyeq-backend",
+  "version": "1.0.0",
+  "description": "restful api for football eye q project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jonathan-ashworth",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
