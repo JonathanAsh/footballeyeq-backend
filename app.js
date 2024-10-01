@@ -23,8 +23,6 @@ app.get('/exercises', async (req, res) => {
     const exercises = await Exercise.find();
     res.send(exercises);
     console.log('GET /exercises - Returned all exercises');
-
-    // await mongoose.disconnect();
 });
 
 // Get all of a user's selected exercises (should probably have userId as param)
@@ -38,8 +36,6 @@ app.get('/user', async (req, res) => {
     }
     res.send(translatedExercises);
     console.log('GET /user - Returned all selected exercises');
-
-    // await mongoose.disconnect();
 });
 
 // Need endpoint to add clicked-on exercise to user -- parameters are user and exercise.
@@ -59,8 +55,6 @@ app.post('/user/exercise/:id', async (req, res) => {
         res.send(true);
     }
     console.log('POST /user/exercise/:id - Edited user exercises');
-
-    // await mongoose.disconnect();
 });
 
 // Delete all data in database (dev only)
@@ -70,5 +64,5 @@ app.get('/empty', async (req, res) => {
     await Exercise.deleteMany();
     res.send('Database emptied');
 
-    await mongoose.disconnect();
+    await mongoose.disconnect(); // needed?
 });
