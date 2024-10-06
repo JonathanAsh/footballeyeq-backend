@@ -6,7 +6,7 @@ import { Exercise, User } from './load-db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ADMIN_ID = '67027835f2d28fae8875043e';
+const ADMIN_ID = '67031427487d8887d9b8a10e';
 
 // Allow local webserver to connect -- may need to change later for authentication
 app.use(express.json());
@@ -44,11 +44,16 @@ app.get('/users', async (req, res) => {
     console.log('GET /users - Returned all users');
 })
 
-// Get all of a user's selected exercises (should probably have userId as param)
+// Get all of a user's selected exercises
+// Should technically be /user/:id/exercises but will get to that later
 app.get('/user/exercises', async (req, res) => {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
 
     const userExercises = await User.findById(ADMIN_ID);
+    if (!userExercises) {
+        res.send(null);
+        return;
+    }
     const translatedExercises = [];
     for (let e of userExercises.selected) {
         translatedExercises.push(await Exercise.findById(e));
@@ -58,6 +63,7 @@ app.get('/user/exercises', async (req, res) => {
 });
 
 // Add/remove specific exercise from user's selected exercise list
+// Should be /user/:userId/exercise/:exerciseId but not yet
 app.post('/user/exercise/:id', async (req, res) => {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
 
@@ -82,7 +88,7 @@ app.get('/empty', async (req, res) => {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
 
     await Exercise.deleteMany();
-    await User.deleteMany(); // this could break things? check after running once, might need to change ADMIN_ID
+    await User.deleteMany();
     res.send('Database emptied');
 
     await mongoose.disconnect(); // needed?
