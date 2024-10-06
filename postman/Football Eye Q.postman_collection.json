@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "d0e91541-0a65-461e-9e98-ca1e2c45be7d",
+		"name": "Football Eye Q",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38703800"
+	},
+	"item": [
+		{
+			"name": "All Selected Exercises",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Specific Exercise Data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/exercise/66f1fe82b32c3e2238ac9e89",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"exercise",
+						"66f1fe82b32c3e2238ac9e89"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Exercises",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/exercises",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"exercises"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
