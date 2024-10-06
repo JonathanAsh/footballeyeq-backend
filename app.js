@@ -38,22 +38,23 @@ app.get('/user', async (req, res) => {
     console.log('GET /user - Returned all selected exercises');
 });
 
-// Need endpoint to add clicked-on exercise to user -- parameters are user and exercise.
-// Get specific exercise (on exercise clicked)
+// Add/remove specific exercise from user's selected exercise list
 app.post('/user/exercise/:id', async (req, res) => {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
 
     const { id } = req.params;
     const user = await User.findById(ADMIN_ID); // will later need to pass in user id
-    if (user.selected.includes(id)) {
+
+    // Check if exercise is already in list - if so, remove from list. If not, add it.
+    const exerciseInList = user.selected.includes(id);
+    if (exerciseInList) {
         user.selected = user.selected.filter((item) => item != id);
-        await user.save();
-        res.send(false);
     } else {
         user.selected.push(id);
-        await user.save();
-        res.send(true);
     }
+    await user.save();
+
+    res.send(exerciseInList);
     console.log('POST /user/exercise/:id - Edited user exercises');
 });
 
@@ -62,6 +63,7 @@ app.get('/empty', async (req, res) => {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
 
     await Exercise.deleteMany();
+    await User.deleteMany(); // this could break things? check after running once, might need to change ADMIN_ID
     res.send('Database emptied');
 
     await mongoose.disconnect(); // needed?
