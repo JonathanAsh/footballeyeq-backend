@@ -24,7 +24,7 @@ main().catch(err => console.log(err));
 // Do we even need this now? This should just be load() I think
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
-    // await load();
+    // await load(); // uncomment this to load all data into database
     await mongoose.disconnect()
 }
 
