@@ -1,15 +1,19 @@
 {
   "name": "footballeyeq-backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "restful api for football eye q project",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "migrate-data": "node load-db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jonathan-ashworth",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.0"
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.6.3"
   }
 }
