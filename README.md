@@ -15,12 +15,4 @@ Once you're in the correct branch, make sure you run `npm install`.
 Finally, to run the api, run `npm run start:api`. In lieu of a frontend, I'm using [Postman](https://www.postman.com/downloads/) to test endpoints.
 
 ## TODO
-
-- Set up database. Mongo? Whatever's easiest.
-- Set up endpoints: 
-    - GET all exercises
-    - GET selected exercises for account
-    - PUT selected exercises for account
-    - Anything else?
-- Figure out accounts (proper authentication can come later, just do dummy accounts in database for now)
-- Share with rest of team
+- null reference error
