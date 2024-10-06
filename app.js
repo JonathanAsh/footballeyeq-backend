@@ -6,7 +6,7 @@ import { Exercise, User } from './load-db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ADMIN_ID = '66f1f7f98aa02ec58307ebc1';
+const ADMIN_ID = '67027835f2d28fae8875043e';
 
 // Allow local webserver to connect -- may need to change later for authentication
 app.use(express.json());
@@ -25,14 +25,33 @@ app.get('/exercises', async (req, res) => {
     console.log('GET /exercises - Returned all exercises');
 });
 
+// Return details about one single exercise
+app.get('/exercise/:id', async (req, res) => {
+    await mongoose.connect('mongodb://127.0.0.1:27017/test');
+
+    const { id } = req.params;
+    const exercise = await Exercise.findById(id);
+    res.send(exercise);
+    console.log('GET /exercise/:id - Returned specific exercise');
+});
+
+// Get all users
+app.get('/users', async (req, res) => {
+    await mongoose.connect('mongodb://127.0.0.1:27017/test');
+
+    const users = await User.find();
+    res.send(users);
+    console.log('GET /users - Returned all users');
+})
+
 // Get all of a user's selected exercises (should probably have userId as param)
-app.get('/user', async (req, res) => {
+app.get('/user/exercises', async (req, res) => {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
 
     const userExercises = await User.findById(ADMIN_ID);
     const translatedExercises = [];
     for (let e of userExercises.selected) {
-        translatedExercises.push(await Exercise.findById(e, 'name'));
+        translatedExercises.push(await Exercise.findById(e));
     }
     res.send(translatedExercises);
     console.log('GET /user - Returned all selected exercises');
