@@ -12,7 +12,7 @@ Swap to the `dev` branch: `git checkout dev`. If you want to push something into
 
 Once you're in the correct branch, make sure you run `npm install`.
 
-Finally, to run the api, run `npm run start:api`. In lieu of a frontend, I'm using [Postman](https://www.postman.com/downloads/) to test endpoints.
+Finally, to run the api, run `npm run start:api`. In lieu of a frontend, I'd recommend using [Postman](https://www.postman.com/downloads/) to test endpoints. Current tests are stored in a collection located in ./postman, which can be imported for ease of use.
 
 ## TODO
 - null reference error

@@ -25,7 +25,7 @@ main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/test');
     // await load(); // uncomment this to load all data into database
-    await mongoose.disconnect()
+    // await mongoose.disconnect()
 }
 
 async function load() {
